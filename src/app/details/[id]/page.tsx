@@ -9,13 +9,13 @@ import { IPokemonDetails } from '@/utils/types';
 const Details = () => {
   const params = useParams();
 
-  const [details, setDetails] = useState({} as IPokemonDetails)
+  const [details, setDetails] = useState({} as IPokemonDetails);
 
-  useEffect(() => {
-    getPokemonDetailsById(params.id)
-    .then(res => setDetails(res))
-    .catch(err => console.error(err))
-  }, []);
+  // useEffect(() => {
+  //   getPokemonDetailsById(params.id)
+  //     .then((res) => setDetails(res))
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   return (
     <div>
