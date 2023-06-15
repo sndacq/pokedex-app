@@ -11,7 +11,10 @@ const Home = () => {
   return (
     <div className="main">
       <Paginate />
-      <div className="content flex flex-wrap px-20 justify-evenly">
+      <div
+        className="content flex flex-wrap px-20 justify-evenly"
+        data-testid="pokemon-list-container"
+      >
         {pokemonList.map((pokemon) => <Card key={pokemon.id} data={pokemon} />)}
       </div>
     </div>

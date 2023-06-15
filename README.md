@@ -18,9 +18,16 @@ To run lint for the codebase:
 npm run lint:fix
 ```
 
+To run unit tests:
+
+```bash
+npm run test
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-The app uses [axios cache interceptor](https://github.com/arthurfiorette/axios-cache-interceptor) to handle caching of API requests
+The app uses [axios cache interceptor](https://github.com/arthurfiorette/axios-cache-interceptor) to handle caching of API requests.
+[Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) is used for writing unit tests.
 
 ## Deployed on Vercel
 

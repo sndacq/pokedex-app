@@ -20,6 +20,7 @@ const Card: FC<ICardProps> = ({ data }) => {
       className="w-80 bg-white shadow rounded my-2"
       onClick={() => router.push(`/details/${id}`)}
       role="button"
+      data-testid="card-detail-button"
     >
       <div
         className="h-72 w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center"
@@ -28,7 +29,7 @@ const Card: FC<ICardProps> = ({ data }) => {
       <div className="p-4 flex flex-col items-center">
         <h1 className="text-gray-800 text-center mt-1 capitalize hover:text-black">{name}</h1>
         <div className="flex">
-          {types.map((typ) => <Badge type={typ.type.name} />)}
+          {types.map((typ) => <Badge key={typ.type.name} type={typ.type.name} />)}
         </div>
       </div>
     </div>

@@ -34,6 +34,7 @@ const Paginate = () => {
             className="h-10 px-3 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700"
             onClick={onPrevPage}
             disabled={prevPage === ''}
+            data-testid="previous-button"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
@@ -49,6 +50,7 @@ const Paginate = () => {
             onChange={handleSearchInput}
             onKeyDown={handleKeyDown}
             value={inputValue}
+            data-testid="input-text"
           />
           {hasError && <p className="mt-2 text-sm text-red-600">Invalid input</p>}
         </li>
@@ -58,6 +60,7 @@ const Paginate = () => {
             className="h-10 px-3 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700"
             onClick={onNextPage}
             disabled={nextPage === ''}
+            data-testid="next-button"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
