@@ -9,7 +9,7 @@ import {
   useMemo,
 } from 'react';
 
-import { getPokemonList, getPokemonDetailsFromList } from '@/api';
+import { getPokemonList, getPokemonDetailsFromList, getPokemonDetailsById } from '@/api';
 
 import { IPokemonDetails } from '@/utils/types';
 
@@ -18,11 +18,13 @@ interface IAppWrapperProps {
 }
 
 interface IStateContext {
-  pokemonList: IPokemonDetails[]
+  pokemonList: IPokemonDetails[];
+  getPokemonDetails: (id: number) => Promise<IPokemonDetails>;
 }
 
 const AppContext = createContext<IStateContext>({
   pokemonList: [] as IPokemonDetails[],
+  getPokemonDetails: async () => ({} as IPokemonDetails),
 });
 
 export const AppWrapper: FC<IAppWrapperProps> = ({ children }) => {
@@ -36,7 +38,26 @@ export const AppWrapper: FC<IAppWrapperProps> = ({ children }) => {
       }).catch((err) => console.error(err));
   }, []);
 
-  const values = useMemo(() => ({ pokemonList }), [pokemonList]);
+  const getPokemonDetails = async (id: number) => {
+    const pokemon = pokemonList.find((p) => p.id === id);
+
+    if (pokemon) return pokemon;
+
+    const fetchedPokemon = await getPokemonDetailsById(id.toString())
+      .then((res) => res)
+      .catch((err) => {
+        console.error(err);
+        return null;
+      });
+    if (fetchedPokemon) {
+      setPokemonList([...pokemonList, fetchedPokemon]);
+      return fetchedPokemon;
+    }
+
+    return {} as IPokemonDetails;
+  };
+
+  const values = useMemo(() => ({ pokemonList, getPokemonDetails }), [pokemonList]);
 
   return (
     <AppContext.Provider value={values}>
